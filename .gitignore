@@ -1,0 +1,7 @@
+#files
+.npmrc
+.env
+
+#folders
+node_modules/
+.vscode/

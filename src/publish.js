@@ -1,9 +1,39 @@
 const stan = require('./stan');
 
+var prices = [
+  {'room_number': 101, 'price_night': 5},
+  {'room_number': 102, 'price_night': 5},
+  {'room_number': 103, 'price_night': 5},
+  {'room_number': 104, 'price_night': 5},
+  {'room_number': 201, 'price_night': 5},
+  {'room_number': 202, 'price_night': 5},
+  {'room_number': 203, 'price_night': 5},
+  {'room_number': 204, 'price_night': 5},
+  {'room_number': 301, 'price_night': 5},
+  {'room_number': 302, 'price_night': 5},
+  {'room_number': 303, 'price_night': 5},
+  {'room_number': 304, 'price_night': 5},
+  {'room_number': 401, 'price_night': 5},
+  {'room_number': 402, 'price_night': 5},
+  {'room_number': 403, 'price_night': 5},
+  {'room_number': 404, 'price_night': 5},
+];
+
+var getTotalDays = (initial, final) => (new Date(final) - new Date(initial))/1000/86400;
+
 var publisher = function(data) {
+
+  let room = prices.find((element) => element.room_number == data.room);
+  if(room == undefined) {
+    console.log('room not found');
+    return;
+  }
+
+  let price = room.price_night * getTotalDays(data.entry_date,data.due_date);
+
   stan.publish(
     process.env.QUEUE_EVENT_TO_PUBLISH,
-    JSON.stringify({ price: 120 }), //TODO: compute real price
+    JSON.stringify({ 'price': price }),
     function(err, guid) {
       if (err) {
         console.log('publish failed: ' + err);

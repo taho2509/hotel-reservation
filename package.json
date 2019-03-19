@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon --exec 'node -r dotenv/config' src/index.js --watch src",
-    "dev": "nodemon --exec 'node -r dotenv/config' src/index.js --watch src"
+    "start": "nodemon --exec \"node -r dotenv/config\" src/index.js --watch src",
+    "dev": "node src/index.js"
   },
   "author": "Angel Ulise Tabares Gonzalez <taho2509@gmail.com>",
   "license": "ISC",

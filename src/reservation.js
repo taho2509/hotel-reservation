@@ -13,7 +13,7 @@ var reservation = function(data) {
     client: data.id
   };
 
-  MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db('reservation');
     dbo.collection('room').insertOne(reserve, function(err, res) {

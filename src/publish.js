@@ -33,7 +33,7 @@ var publisher = function(data) {
 
   stan.publish(
     process.env.QUEUE_EVENT_TO_PUBLISH,
-    JSON.stringify({ 'price': price }),
+    JSON.stringify({ 'id': data.id, 'price': price, 'room': data.room }),
     function(err, guid) {
       if (err) {
         console.log('publish failed: ' + err);

@@ -1,4 +1,4 @@
-const clientId = `client_${new Date().getTime()}`;
+const clientId = process.env.QUEUE_CLIENT_NAME;
 const clusterName = process.env.QUEUE_CLUSTER_NAME;
 
 var stan = require('node-nats-streaming').connect(clusterName, clientId);
